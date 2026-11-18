@@ -2,6 +2,7 @@
 #include <vector>
 #include <iomanip>
 #include "product.h"
+#include <algorithm>
 
 void showProducts(const std::vector<Product>& products) {
     for (size_t i = 0; i < products.size(); i++) {
@@ -18,6 +19,11 @@ int main() {
         { "Bread", 0.95, 15 },
         { "Cheese", 4.50, 8 }
     };
+
+    std::sort(products.begin(), products.end(),
+        [](const Product& a, const Product& b) {
+            return a.name < b.name;
+        });
 
     int choice = -1;
     while (choice != 0) {
